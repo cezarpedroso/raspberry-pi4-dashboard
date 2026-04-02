@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "swFX4iMVJ8JekuU8vax-H"
+uri = "file://DEPLOY_TO_VERCEL.md"
+type = "text"
+title = "Deploy to Vercel — Personal Dashboard"
