@@ -1,37 +1,36 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 
-// Use Tailwind via postcss; vite-plugin-tailwindcss isn't necessary in Vite 4+
-import tailwindcss from "tailwindcss";
-import autoprefixer from "autoprefixer";
-
-const port = process.env.PORT ? Number(process.env.PORT) : 5173;
+const port = Number(process.env.PORT) || 3000;
 const basePath = process.env.BASE_PATH || "/";
 
 export default defineConfig({
   base: basePath,
   plugins: [
     react(),
+    tailwindcss(),
   ],
   resolve: {
     alias: {
-      "@": path.resolve(process.cwd(), "src"),
-      "@assets": path.resolve(process.cwd(), "attached_assets"),
+      "@": path.resolve(import.meta.dirname, "src"),
     },
     dedupe: ["react", "react-dom"],
   },
-  css: {
-    postcss: {
-      plugins: [tailwindcss(), autoprefixer()],
-    },
-  },
+  root: path.resolve(import.meta.dirname),
   build: {
-    outDir: "dist",
+    outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
   },
   server: {
     port,
     host: "0.0.0.0",
+    allowedHosts: true,
+  },
+  preview: {
+    port,
+    host: "0.0.0.0",
+    allowedHosts: true,
   },
 });
