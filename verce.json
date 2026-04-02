@@ -1,0 +1,6 @@
+{
+  "buildCommand": "pnpm --filter @workspace/personal-dashboard... run build",
+  "outputDirectory": "artifacts/personal-dashboard/dist/public",
+  "installCommand": "pnpm install",
+  "framework": null
+}
